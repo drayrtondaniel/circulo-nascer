@@ -175,15 +175,18 @@
         }
 
         .header-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-lg);
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .brand {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: var(--space-sm);
             margin-bottom: var(--space-md);
         }
@@ -215,7 +218,13 @@
         }
 
         .hero-text {
-            max-width: 520px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
         }
 
         .hero-text p {
@@ -237,9 +246,10 @@
 
         .hero-benefits {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: var(--space-sm);
             margin-top: var(--space-md);
+            text-align: left;
         }
 
         .benefit-item {
@@ -1679,12 +1689,7 @@
                         <div class="benefit-item">Acolhimento completo: você + seu parceiro</div>
                     </div>
                 </div>
-
-                <div class="hero-image" style="flex: 0 0 280px; display: flex; align-items: center; justify-content: center;">
-                    <img src="https://images.pexels.com/photos/18978160/pexels-photo-18978160.jpeg?cs=srgb&dl=pexels-doouglasma-18978160.jpg&fm=jpg" alt="Momento especial de gestação" style="width: 100%; max-width: 280px; border-radius: 8px; box-shadow: var(--shadow-elevated); object-fit: cover; aspect-ratio: 4/5;">
-                </div>
-
-                </div>
+            </div>
         </div>
     </header>
 
