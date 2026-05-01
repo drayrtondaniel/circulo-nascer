@@ -1188,16 +1188,17 @@
 
         .plan-badge {
             position: absolute;
-            top: var(--space-sm);
-            right: calc(-1rem + 2px);
+            top: -5px;
+            right: -5px;
             background: var(--sage-deep);
             color: var(--offwhite);
-            padding: 0.3rem 2.5rem;
-            font-size: 0.75rem;
+            padding: 0.3rem 1.5rem;
+            font-size: 0.7rem;
             font-weight: 500;
-            transform: rotate(45deg) translateX(12px);
+            transform: rotate(0deg);
             letter-spacing: 0.05em;
             text-transform: uppercase;
+            border-radius: 0 8px 0 8px;
         }
 
         .plan-header {
@@ -1511,6 +1512,7 @@
         .footer-credentials {
             margin: var(--space-sm) 0;
             opacity: 0.9;
+            text-align: center;
         }
 
         .footer-disclaimer {
@@ -1677,7 +1679,11 @@
                         <div class="benefit-item">Acolhimento completo: você + seu parceiro</div>
                     </div>
                 </div>
-                
+
+                <div class="hero-image" style="flex: 0 0 280px; display: flex; align-items: center; justify-content: center;">
+                    <img src="https://images.pexels.com/photos/18978160/pexels-photo-18978160.jpeg?cs=srgb&dl=pexels-doouglasma-18978160.jpg&fm=jpg" alt="Momento especial de gestação" style="width: 100%; max-width: 280px; border-radius: 8px; box-shadow: var(--shadow-elevated); object-fit: cover; aspect-ratio: 4/5;">
+                </div>
+
                 </div>
         </div>
     </header>
@@ -1886,11 +1892,7 @@
             </div>
             <div class="doctor-container">
                 <div class="doctor-portrait">
-                    <div class="doctor-portrait-placeholder">
-                        <span class="photo-needed">📷</span>
-                        Foto do médico<br>precisa ser adicionada
-                        <small>Solicite a Dr. Ayrton</small>
-                    </div>
+                    <img src="/static/dr_ayrton.png" alt="Dr. Ayrton Daniel Ribeiro Filho" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
                 </div>
                 <div class="doctor-content">
                     <p>Com mais de 30 anos dedicados à obstetrícia, o Dr. Ayrton Daniel une excelência técnica acadêmica a uma abordagem profundamente humanista.</p>
@@ -1915,6 +1917,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Planos de Acompanhamento</h2>
+                <p style="margin-top: var(--space-xs); max-width: 600px; margin-left: auto; margin-right: auto; font-style: italic; color: var(--charcoal-light);">Primeiro encontro gratuito — sem compromisso</p>
                 <p style="margin-top: var(--space-sm); max-width: 600px; margin-left: auto; margin-right: auto; font-style: italic; color: var(--charcoal-light);">Três níveis de cuidado desenhados para caminhar com consciência em cada etapa</p>
             </div>
             
