@@ -1,0 +1,9 @@
+# ===========================================
+# DR. AYRTON - CIRCULO NASCER
+# Dependências Python
+# ===========================================
+
+Flask==2.3.3
+requests==2.32.5
+python-dotenv==1.2.2
+gunicorn==21.2.0

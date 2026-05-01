@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Sputnik Five | Descubra o próximo passo para seu conteúdo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF5E00;
+            --secondary: #FF00AA;
+            --bg-dark: #000000;
+            --bg-card: #111111;
+            --text-light: #FFFFFF;
+            --text-muted: #888888;
+            --border: #222222;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .quiz-wrapper {
+            max-width: 700px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .quiz-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        /* Progresso */
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #222;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .step-indicator {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--text-light);
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        h1 .gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        /* Opções */
+        .options-grid {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .option-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background: #222;
+            transform: translateX(5px);
+        }
+
+        .option-card.selected {
+            border-color: var(--secondary);
+            background: rgba(255, 0, 170, 0.1);
+            box-shadow: 0 0 15px rgba(255, 0, 170, 0.2);
+        }
+
+        .option-emoji {
+            font-size: 1.8rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .option-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Botões */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 4px;
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid #444;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: black;
+            font-weight: 900;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 94, 0, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Resultado */
+        .result-card {
+            background: linear-gradient(135deg, rgba(255,94,0,0.1), rgba(255,0,170,0.1));
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            border: 1px solid #333;
+        }
+
+        .benefit-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .benefit-item h4 {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .benefit-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Input de contato */
+        .contact-input {
+            width: 100%;
+            padding: 15px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: white;
+            font-size: 1rem;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .contact-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .quiz-wrapper { padding: 25px; }
+            h1 { font-size: 1.5rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-wrapper">
+        <!-- STEP 0: Introdução -->
+        <div class="step active" id="step0">
+            <h1>QUIZ RÁPIDO<span class="gradient">2 MINUTOS</span></h1>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">🎯</div>
+                <h2 style="font-size: 1.5rem;">Descubra o melhor formato de conteúdo para o seu momento</h2>
+                <p style="margin: 20px 0; color: #aaa;">Sem termos técnicos. Sem enrolação. Apenas 5 perguntas.</p>
+            </div>
+
+            <button class="btn btn-primary" onclick="nextStep(0)" style="width: 100%;">COMEÇAR</button>
+        </div>
+
+        <!-- STEP 1: Quem é você? -->
+        <div class="step" id="step1">
+            <div class="step-indicator">PASSO 1 DE 5</div>
+            <div class="progress-container">
+                <div class="progress-bar"><div class="progress-fill" style="width: 20%"></div></div>
+            </div>
+
+            <div class="question-text">Primeiro, me conta: qual sua área?</div>
+            
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(1, 'medico')">
+                    <span class="option-emoji">👩‍⚕️</span>
+                    <div>
+                        <div class="option-text">Saúde (médico, dentista, psicólogo)</div>
+                        <div class="option-desc">Atendimento a pacientes, clínica ou consultório</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(1, 'servicos')">
+                    <span class="option-emoji">💼</span>
+                    <div>
+                        <div class="option-text">Serviços / Consultoria</div>
+                        <div class="option-desc">Advogado, engenheiro, personal, consultor</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(1, 'produto')">
+                    <span class="option-emoji">🛍️</span>
+                    <div>
+                        <div class="option-text">Produto / E-commerce</div>
+                        <div class="option-desc">Loja física ou online, marca própria</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(1, 'conteudo')">
+                    <span class="option-emoji">📱</span>
+                    <div>
+                        <div class="option-text">Criador de conteúdo / Influencer</div>
+                        <div class="option-desc">Já produzo conteúdo, quero escalar</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="prevStep(1)" style="flex: 0.3;">VOLTAR</button>
+            <button class="btn btn-primary" onclick="nextStep(1)" disabled id="step1-btn" style="flex: 0.7;">CONTINUAR</button>
+        </div>
+
+        <!-- STEP 2: Objetivo principal -->
+        <div class="step" id="step2">
+            <div class="step-indicator">PASSO 2 DE 5</div>
+            <div class="progress-container">
+                <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+            </div>
+
+            <div class="question-text">Qual seu principal objetivo com o conteúdo?</div>
+            
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(2, 'autoridade')">
+                    <span class="option-emoji">🏆</span>
+                    <div>
+                        <div class="option-text">Construir autoridade</div>
+                        <div class="option-desc">Ser reconhecido como referência na minha área</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(2, 'clientes')">
+                    <span class="option-emoji">🤝</span>
+                    <div>
+                        <div class="option-text">Gerar clientes</div>
+                        <div class="option-desc">Converter seguidores em consultas/vendas</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(2, 'engajamento')">
+                    <span class="option-emoji">❤️</span>
+                    <div>
+                        <div class="option-text">Aumentar engajamento</div>
+                        <div class="option-desc">Mais curtidas, comentários e compartilhamentos</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(2, 'tempo')">
+                    <span class="option-emoji">⏰</span>
+                    <div>
+                        <div class="option-text">Ganhar tempo</div>
+                        <div class="option-desc">Quero produzir mais em menos tempo</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="prevStep(2)" style="flex: 0.3;">VOLTAR</button>
+            <button class="btn btn-primary" onclick="nextStep(2)" disabled id="step2-btn" style="flex: 0.7;">CONTINUAR</button>
+        </div>
+
+        <!-- STEP 3: Tempo disponível -->
+        <div class="step" id="step3">
+            <div class="step-indicator">PASSO 3 DE 5</div>
+            <div class="progress-container">
+                <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+            </div>
+
+            <div class="question-text">Quanto tempo você tem por semana para se dedicar ao conteúdo?</div>
+            
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(3, 'pouco')">
+                    <span class="option-emoji">😫</span>
+                    <div>
+                        <div class="option-text">Menos de 2 horas</div>
+                        <div class="option-desc">Correria total, faço quando dá</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(3, 'medio')">
+                    <span class="option-emoji">😐</span>
+                    <div>
+                        <div class="option-text">2 a 5 horas</div>
+                        <div class="option-desc">Consigo manter, mas é puxado</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(3, 'bom')">
+                    <span class="option-emoji">😊</span>
+                    <div>
+                        <div class="option-text">5 a 10 horas</div>
+                        <div class="option-desc">Tenho uma rotina dedicada</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(3, 'muito')">
+                    <span class="option-emoji">🤓</span>
+                    <div>
+                        <div class="option-text">Mais de 10 horas</div>
+                        <div class="option-desc">Isso é prioridade pra mim</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="prevStep(3)" style="flex: 0.3;">VOLTAR</button>
+            <button class="btn btn-primary" onclick="nextStep(3)" disabled id="step3-btn" style="flex: 0.7;">CONTINUAR</button>
+        </div>
+
+        <!-- STEP 4: Formato preferido -->
+        <div class="step" id="step4">
+            <div class="step-indicator">PASSO 4 DE 5</div>
+            <div class="progress-container">
+                <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
+            </div>
+
+            <div class="question-text">Que tipo de conteúdo você sente que funciona melhor pra você?</div>
+            
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(4, 'video')">
+                    <span class="option-emoji">🎥</span>
+                    <div>
+                        <div class="option-text">Vídeos</div>
+                        <div class="option-desc">Reels, YouTube, stories</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(4, 'texto')">
+                    <span class="option-emoji">📝</span>
+                    <div>
+                        <div class="option-text">Textos</div>
+                        <div class="option-desc">Posts, carrosséis, artigos</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(4, 'imagem')">
+                    <span class="option-emoji">🖼️</span>
+                    <div>
+                        <div class="option-text">Imagens</div>
+                        <div class="option-desc">Fotos, infográficos, artes</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(4, 'mix')">
+                    <span class="option-emoji">🔄</span>
+                    <div>
+                        <div class="option-text">Mix de tudo</div>
+                        <div class="option-desc">Depende do momento</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="prevStep(4)" style="flex: 0.3;">VOLTAR</button>
+            <button class="btn btn-primary" onclick="nextStep(4)" disabled id="step4-btn" style="flex: 0.7;">CONTINUAR</button>
+        </div>
+
+        <!-- STEP 5: Maior desafio -->
+        <div class="step" id="step5">
+            <div class="step-indicator">PASSO 5 DE 5</div>
+            <div class="progress-container">
+                <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+            </div>
+
+            <div class="question-text">Qual seu maior desafio hoje?</div>
+            
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(5, 'ideias')">
+                    <span class="option-emoji">🤔</span>
+                    <div>
+                        <div class="option-text">Falta de ideias</div>
+                        <div class="option-desc">Não sei sobre o que postar</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(5, 'tempo')">
+                    <span class="option-emoji">⏳</span>
+                    <div>
+                        <div class="option-text">Falta de tempo</div>
+                        <div class="option-desc">Produzir leva muito tempo</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(5, 'qualidade')">
+                    <span class="option-emoji">📸</span>
+                    <div>
+                        <div class="option-text">Qualidade visual</div>
+                        <div class="option-desc">Meu conteúdo não tem "cara profissional"</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(5, 'resultados')">
+                    <span class="option-emoji">📊</span>
+                    <div>
+                        <div class="option-text">Resultados</div>
+                        <div class="option-desc">Posto, mas não vejo retorno</div>
+                    </div>
+                </div>
+                <div class="option-card" onclick="selectOption(5, 'consistencia')">
+                    <span class="option-emoji">📅</span>
+                    <div>
+                        <div class="option-text">Consistência</div>
+                        <div class="option-desc">Começo bem, mas não mantenho</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="prevStep(5)" style="flex: 0.3;">VOLTAR</button>
+            <button class="btn btn-primary" onclick="showResult()" disabled id="step5-btn" style="flex: 0.7;">VER MEU RESULTADO</button>
+        </div>
+
+        <!-- STEP 6: Resultado -->
+        <div class="step" id="result">
+            <h1>SEU DIAGNÓSTICO<span class="gradient">GRATUITO</span></h1>
+            
+            <div class="result-card" id="result-card">
+                <!-- Preenchido via JS -->
+            </div>
+
+            <div style="margin: 30px 0;">
+                <h3 style="color: white; margin-bottom: 15px;">📱 Quer receber 3 posts prontos?</h3>
+                <p style="margin-bottom: 10px;">Deixa seu WhatsApp que eu envio agora mesmo:</p>
+                <input type="text" class="contact-input" id="whatsapp-input" placeholder="(19) 99946-2258" value="19 99946-2258">
+                <p style="font-size: 0.7rem; color: #666; margin-top: 5px;">Sem spam. Apenas seu presente e, se quiser, a gente conversa.</p>
+            </div>
+
+            <button class="btn btn-primary" onclick="sendWhatsApp()" style="width: 100%;">
+                📲 RECEBER CONTEÚDO AGORA
+            </button>
+
+            <button class="btn" onclick="restartQuiz()" style="width: 100%; margin-top: 15px;">
+                REFAZER QUIZ
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ========== LÓGICA DO QUIZ ==========
+        let answers = {};
+        let currentStep = 0;
+
+        function selectOption(step, value) {
+            answers[step] = value;
+            
+            // Remove seleção anterior
+            document.querySelectorAll(`#step${step} .option-card`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Adiciona seleção atual
+            event.currentTarget.classList.add('selected');
+            
+            // Habilita botão
+            document.getElementById(`step${step}-btn`).disabled = false;
+        }
+
+        function nextStep(step) {
+            document.getElementById(`step${step}`).classList.remove('active');
+            document.getElementById(`step${step + 1}`).classList.add('active');
+            currentStep = step + 1;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step${step}`).classList.remove('active');
+            document.getElementById(`step${step - 1}`).classList.add('active');
+            currentStep = step - 1;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showResult() {
+            // Esconde step5
+            document.getElementById('step5').classList.remove('active');
+            
+            // Gera resultado baseado nas respostas
+            const resultado = generateResult();
+            
+            // Preenche card
+            document.getElementById('result-card').innerHTML = resultado;
+            
+            // Mostra resultado
+            document.getElementById('result').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function generateResult() {
+            const area = answers[1];
+            const objetivo = answers[2];
+            const tempo = answers[3];
+            const formato = answers[4];
+            const desafio = answers[5];
+
+            // Lógica de recomendação personalizada
+            let titulo = '';
+            let descricao = '';
+            let emoji = '';
+            let plano = '';
+            let beneficio1 = '';
+            let beneficio2 = '';
+
+            if (tempo === 'pouco' || desafio === 'tempo') {
+                emoji = '⚡';
+                titulo = 'Perfil: Acelerador';
+                descricao = 'Você tem pouco tempo mas quer resultados. O segredo não é produzir mais, é produzir melhor.';
+                plano = 'Plano Starter: 2 vídeos/mês + automação';
+                beneficio1 = '⏱️ 80% menos tempo produzindo';
+                beneficio2 = '📈 Consistência sem esforço';
+            }
+            else if (objetivo === 'autoridade' || area === 'medico') {
+                emoji = '🏛️';
+                titulo = 'Perfil: Autoridade';
+                descricao = 'Seu foco é ser referência. Conteúdo de qualidade consistente constrói confiança.';
+                plano = 'Plano Growth: Conteúdo estratégico + tráfego';
+                beneficio1 = '🎯 Posicionamento de especialista';
+                beneficio2 = '🤝 Pacientes/clientes recorrentes';
+            }
+            else if (objetivo === 'clientes') {
+                emoji = '💰';
+                titulo = 'Perfil: Conversor';
+                descricao = 'Você quer que conteúdo vire cliente. Foco em call to action e oferta.';
+                plano = 'Plano Performance: Funis de venda automatizados';
+                beneficio1 = '📊 ROI mensurável';
+                beneficio2 = '🔄 Sistema de vendas recorrentes';
+            }
+            else {
+                emoji = '🚀';
+                titulo = 'Perfil: Estrategista';
+                descricao = 'Você já tem noção do que funciona, quer escalar de forma inteligente.';
+                plano = 'Plano Premium: Consultoria + automação completa';
+                beneficio1 = '📈 Escala previsível';
+                beneficio2 = '🎯 Estratégia personalizada';
+            }
+
+            return `
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 10px;">${emoji}</div>
+                    <h2 style="color: white; margin-bottom: 10px;">${titulo}</h2>
+                    <p style="margin-bottom: 20px;">${descricao}</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-emoji">✅</div>
+                            <h4>${beneficio1}</h4>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-emoji">✅</div>
+                            <h4>${beneficio2}</h4>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-emoji">🎁</div>
+                            <h4>3 posts grátis</h4>
+                            <p>Para testar sem compromisso</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #FF5E00; color: black; padding: 15px; border-radius: 4px; font-weight: bold; margin-top: 20px;">
+                        ⭐ RECOMENDAÇÃO: ${plano}
+                    </div>
+                </div>
+            `;
+        }
+
+        function sendWhatsApp() {
+            let whatsapp = document.getElementById('whatsapp-input').value;
+            
+            // Limpa formatação
+            whatsapp = whatsapp.replace(/\D/g, '');
+            
+            // Se não tiver código de país, adiciona 55
+            if (whatsapp.length === 11) { // 19 999462258
+                whatsapp = '55' + whatsapp;
+            }
+            
+            const mensagem = encodeURIComponent(
+                `Olá! Fiz o quiz no site e quero receber meus 3 posts grátis. Meu diagnóstico foi: ${document.querySelector('#result-card h2')?.textContent || 'Personalizado'}`
+            );
+            
+            window.open(`https://wa.me/${whatsapp}?text=${mensagem}`, '_blank');
+            
+            // Opcional: salvar lead no sistema
+            fetch('/api/save-quiz-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    whatsapp: whatsapp,
+                    answers: answers,
+                    timestamp: new Date().toISOString()
+                })
+            });
+        }
+
+        function restartQuiz() {
+            answers = {};
+            currentStep = 0;
+            
+            // Reset UI
+            document.querySelectorAll('.option-card').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.btn-primary[disabled]').forEach(btn => btn.disabled = true);
+            
+            // Voltar ao início
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step0').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
