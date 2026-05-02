@@ -27,7 +27,7 @@ CLIENT_CONFIG = {
         'charcoal': '#2c2c2c'
     },
     'whatsapp': '5519999462258',
-    'calcom_username': 'dr-ayrton',
+    'calcom_username': 'dr-ayrton-daniel-5t0h6e',
     'analytics_gtm': 'GTM-CIRCULONASCER'
 }
 
