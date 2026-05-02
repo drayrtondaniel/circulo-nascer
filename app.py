@@ -185,30 +185,6 @@ async def handle_update(update, context):
                 reply_markup=keyboards_principais()
             )
 
-def start_telegram_bot():
-    """Inicia o bot do Telegram em thread separada"""
-    import asyncio
-    from telegram import Update
-    from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters
-
-    async def main():
-        application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
-
-        application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_update))
-        application.add_handler(CallbackQueryHandler(handle_update))
-        application.add_handler(CommandHandler("start", lambda u, c: u.message.reply_text(RESPOSTAS['ola'], parse_mode='Markdown', reply_markup=keyboards_principais())))
-
-        logger.info("NascerBot iniciado!")
-        await application.run_polling(allowed_updates=Update.ALL_TYPES)
-
-    asyncio.run(main())
-
-# Inicia bot em thread separada
-if TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_TOKEN != 'YOUR_BOT_TOKEN_HERE':
-    bot_thread = threading.Thread(target=start_telegram_bot, daemon=True)
-    bot_thread.start()
-    logger.info("Bot Telegram iniciado em background")
-
 # ===========================================
 # CONFIGURAÇÕES DO CLIENTE
 # ===========================================
@@ -296,9 +272,6 @@ def health():
 def telegram_webhook():
     """Webhook para receber mensagens do Telegram"""
     try:
-        from telegram import Update
-        from telegram.ext import Application
-
         data = request.get_json()
         logger.info(f"Telegram webhook received: {data}")
 
@@ -313,32 +286,22 @@ def telegram_webhook():
         # Responde baseado no texto
         if text in ['/start', 'oi', 'olá', 'iniciar', '/start@NascerBot']:
             response_text = RESPOSTAS['ola']
-            reply_markup = keyboards_principais()
         elif any(p in text.lower() for p in ['preço', 'valor', 'plano', 'custa']):
             response_text = RESPOSTAS['preco']
-            reply_markup = keyboard_agendar()
         elif any(p in text.lower() for p in ['horário', 'horario', 'agenda']):
             response_text = RESPOSTAS['horario']
-            reply_markup = keyboard_agendar()
         elif any(p in text.lower() for p in ['funciona', 'como']):
             response_text = RESPOSTAS['como_funciona']
-            reply_markup = keyboard_agendar()
         else:
             response_text = RESPOSTAS['default']
-            reply_markup = keyboards_principais()
 
-        # Envia resposta via Telegram Bot API
+        # Envia resposta via Telegram Bot API (sem usar biblioteca telegram)
         url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
         payload = {
             'chat_id': chat_id,
             'text': response_text,
             'parse_mode': 'Markdown'
         }
-
-        # Adiciona reply_markup se existir
-        if reply_markup:
-            payload['reply_markup'] = json.loads(str(reply_markup).replace("'", '"'))
-
         requests.post(url, json=payload, timeout=10)
 
     except Exception as e:
