@@ -4,13 +4,210 @@
 # ===========================================
 
 import os
-from flask import Flask, render_template, request, jsonify, redirect, flash
-from datetime import datetime
-import requests
 import json
+import threading
+import logging
+from datetime import datetime
+from flask import Flask, render_template, request, jsonify, redirect, flash
+import requests
 
+# Configuração Flask
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'circulo-nascer-secret-2026')
+
+# ===========================================
+# TELEGRAM BOT CONFIG (integrado)
+# ===========================================
+
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN_NASCER', '8102603154:AAG7J6AJkT4pSzEEN-0Rfso4Pnjmio5Hcnk')
+TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '5842787913')
+
+# Logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Cal.com URL
+CALCOM_URL = "https://cal.com/dr-ayrton-daniel-5t0h6e/30min"
+TELEGRAM_DR = "https://t.me/dr_ayrton"
+
+# Respostas do bot
+RESPOSTAS = {
+    'ola': """Olá! 👋 Sou o assistente do Círculo Nascer.
+
+Estou aqui para te acolher e direcionar ao cuidado que você precisa.
+
+Como posso te ajudar?
+
+1️⃣ Informações sobre planos e valores
+2️⃣ Agendar consulta gratuita
+3️⃣ Sobre o Dr. Ayrton
+4️⃣ Falar com atendente""",
+
+    'preco': """💰 *Planos de Acompanhamento*
+
+➤ *Essencial* - R$ 290/mês
+  Consultoria por mensagens, vídeos de orientação
+
+➤ *Acompanhamento* - R$ 490/mês
+  Reuniões presenciais, suporte prioritário
+
+➤ *Integral* - R$ 890/mês
+  Cuidado completo, atenção dedicada
+
+✨ _Primeiro encontro gratuito!_""",
+
+    'horario': """🕐 *Horários de Atendimento*
+
+Consultório em Campinas/SP:
+Segunda a Sexta: 8h às 18h
+
+Atendimento online: Todo o Brasil""",
+
+    'como_funciona': """🤔 *Como funciona?*
+
+1️⃣ Você preenche o quiz de triagem
+2️⃣ Indicamos o plano ideal pra você
+3️⃣ Agendamos consulta gratuita
+4️⃣ Começamos o acompanhamento
+
+Simples assim!""",
+
+    'default': """Desculpe, não entendi. Me avisa o que precisa:
+
+1️⃣ Informações sobre planos
+2️⃣ Agendar consulta
+3️⃣ Sobre o Dr. Ayrton
+4️⃣ Falar com atendente"""
+}
+
+def keyboards_principais():
+    from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+    keyboard = [
+        [InlineKeyboardButton("💰 Planos e Valores", callback_data="preco")],
+        [InlineKeyboardButton("📅 Agendar Consulta", callback_data="agendar")],
+        [InlineKeyboardButton("👨‍⚕️ Sobre o Dr. Ayrton", callback_data="sobre")],
+        [InlineKeyboardButton("❓ Como Funciona", callback_data="como")],
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+def keyboard_agendar():
+    from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+    keyboard = [
+        [InlineKeyboardButton("📅 Agendar Online", url=CALCOM_URL)],
+        [InlineKeyboardButton("💬 Falar no Telegram", url=TELEGRAM_DR)],
+        [InlineKeyboardButton("📋 Ver Planos", callback_data="preco")],
+        [InlineKeyboardButton("⬅️ Voltar", callback_data="voltar")],
+    ]
+    return InlineKeyboardMarkup(keyboard)
+
+async def handle_update(update, context):
+    """Handler das mensagens do bot"""
+    from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+
+    if update.message:
+        texto = update.message.text.lower()
+        chat_id = update.message.chat_id
+
+        # Comandos
+        if texto in ['/start', 'oi', 'olá', 'iniciar']:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['ola'],
+                parse_mode='Markdown',
+                reply_markup=keyboards_principais()
+            )
+        elif any(p in texto for p in ['preço', 'valor', 'plano', 'custa']):
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['preco'],
+                parse_mode='Markdown',
+                reply_markup=keyboard_agendar()
+            )
+        elif any(p in texto for p in ['horário', 'horario', 'agenda']):
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['horario'],
+                parse_mode='Markdown',
+                reply_markup=keyboard_agendar()
+            )
+        elif any(p in texto for p in ['funciona', 'como']):
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['como_funciona'],
+                parse_mode='Markdown',
+                reply_markup=keyboard_agendar()
+            )
+        else:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['default'],
+                parse_mode='Markdown',
+                reply_markup=keyboards_principais()
+            )
+
+    elif update.callback_query:
+        query = update.callback_query
+        await query.answer()
+        chat_id = query.message.chat_id
+
+        if query.data == 'agendar':
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text="📅 Escolha como prefere ser atendido:",
+                reply_markup=keyboard_agendar()
+            )
+        elif query.data == 'preco':
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['preco'],
+                parse_mode='Markdown',
+                reply_markup=keyboard_agendar()
+            )
+        elif query.data == 'sobre':
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text="👨‍⚕️ *Dr. Ayrton Daniel*\n\n30 anos de experiência\nFormação UFRJ/Unicamp\n\nAgende uma conversa sem compromisso!",
+                parse_mode='Markdown',
+                reply_markup=keyboard_agendar()
+            )
+        elif query.data == 'como':
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['como_funciona'],
+                parse_mode='Markdown',
+                reply_markup=keyboard_agendar()
+            )
+        elif query.data == 'voltar':
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=RESPOSTAS['ola'],
+                parse_mode='Markdown',
+                reply_markup=keyboards_principais()
+            )
+
+def start_telegram_bot():
+    """Inicia o bot do Telegram em thread separada"""
+    import asyncio
+    from telegram import Update
+    from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters
+
+    async def main():
+        application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+
+        application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_update))
+        application.add_handler(CallbackQueryHandler(handle_update))
+        application.add_handler(CommandHandler("start", lambda u, c: u.message.reply_text(RESPOSTAS['ola'], parse_mode='Markdown', reply_markup=keyboards_principais())))
+
+        logger.info("NascerBot iniciado!")
+        await application.run_polling(allowed_updates=Update.ALL_TYPES)
+
+    asyncio.run(main())
+
+# Inicia bot em thread separada
+if TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_TOKEN != 'YOUR_BOT_TOKEN_HERE':
+    bot_thread = threading.Thread(target=start_telegram_bot, daemon=True)
+    bot_thread.start()
+    logger.info("Bot Telegram iniciado em background")
 
 # ===========================================
 # CONFIGURAÇÕES DO CLIENTE
@@ -94,6 +291,60 @@ def health():
         'cliente': CLIENT_CONFIG['nome'],
         'timestamp': datetime.now().isoformat()
     })
+
+@app.route('/webhook/telegram', methods=['POST'])
+def telegram_webhook():
+    """Webhook para receber mensagens do Telegram"""
+    try:
+        from telegram import Update
+        from telegram.ext import Application
+
+        data = request.get_json()
+        logger.info(f"Telegram webhook received: {data}")
+
+        # Extrai dados da mensagem
+        message = data.get('message', {})
+        text = message.get('text', '')
+        chat_id = message.get('chat', {}).get('id')
+
+        if not text or not chat_id:
+            return jsonify({'ok': True})
+
+        # Responde baseado no texto
+        if text in ['/start', 'oi', 'olá', 'iniciar', '/start@NascerBot']:
+            response_text = RESPOSTAS['ola']
+            reply_markup = keyboards_principais()
+        elif any(p in text.lower() for p in ['preço', 'valor', 'plano', 'custa']):
+            response_text = RESPOSTAS['preco']
+            reply_markup = keyboard_agendar()
+        elif any(p in text.lower() for p in ['horário', 'horario', 'agenda']):
+            response_text = RESPOSTAS['horario']
+            reply_markup = keyboard_agendar()
+        elif any(p in text.lower() for p in ['funciona', 'como']):
+            response_text = RESPOSTAS['como_funciona']
+            reply_markup = keyboard_agendar()
+        else:
+            response_text = RESPOSTAS['default']
+            reply_markup = keyboards_principais()
+
+        # Envia resposta via Telegram Bot API
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        payload = {
+            'chat_id': chat_id,
+            'text': response_text,
+            'parse_mode': 'Markdown'
+        }
+
+        # Adiciona reply_markup se existir
+        if reply_markup:
+            payload['reply_markup'] = json.loads(str(reply_markup).replace("'", '"'))
+
+        requests.post(url, json=payload, timeout=10)
+
+    except Exception as e:
+        logger.error(f"Erro no webhook: {e}")
+
+    return jsonify({'ok': True})
 
 # ===========================================
 # UTILITÁRIOS
