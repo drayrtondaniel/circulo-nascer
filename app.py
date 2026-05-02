@@ -31,6 +31,10 @@ CLIENT_CONFIG = {
     'analytics_gtm': 'GTM-CIRCULONASCER'
 }
 
+# Sendpulse config
+SENDPULSE_API_KEY = os.getenv('SENDPULSE_API_KEY', 'sp_apikey_a05039a079f133206d81f2482d0a6023f49f63d31d9da2041444a146c39d3649')
+SENDPULSE_LIST_ID = '14509883'
+
 # ===========================================
 # ROTAS
 # ===========================================
@@ -76,6 +80,9 @@ def capturar_lead():
 
     # Notificar Telegram se configurado
     notificar_telegram(lead)
+
+    # Enviar para Sendpulse
+    enviar_sendpulse(lead)
 
     return jsonify({'status': 'ok', 'lead_id': lead['id']})
 
@@ -129,6 +136,36 @@ def notificar_telegram(lead):
         }, timeout=10)
     except Exception as e:
         print(f"Erro Telegram: {e}")
+
+def enviar_sendpulse(lead):
+    """Envia lead para lista do Sendpulse"""
+    if not SENDPULSE_API_KEY:
+        print("Sendpulse: API key não configurada")
+        return
+
+    try:
+        url = "https://api.sendpulse.com/rest/addressbooks/" + SENDPULSE_LIST_ID + "/emails"
+        payload = {
+            "email": lead.get('email', ''),
+            "variables": {
+                "name": lead.get('nome', ''),
+                "phone": lead.get('whatsapp', ''),
+                "trimestre": lead.get('trimestre', ''),
+                "plano": lead.get('plano', ''),
+                "origem": lead.get('origem', '')
+            }
+        }
+        headers = {
+            "Authorization": "Bearer " + SENDPULSE_API_KEY,
+            "Content-Type": "application/json"
+        }
+        response = requests.post(url, json=payload, headers=headers, timeout=10)
+        if response.status_code in [200, 201]:
+            print(f"Sendpulse: Email {lead.get('email')} adicionado à lista")
+        else:
+            print(f"Sendpulse: Erro {response.status_code} - {response.text}")
+    except Exception as e:
+        print(f"Erro Sendpulse: {e}")
 
 # ===========================================
 # SERVIDOR
