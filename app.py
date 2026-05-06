@@ -259,6 +259,11 @@ def capturar_lead():
 
     return jsonify({'status': 'ok', 'lead_id': lead['id']})
 
+@app.route('/ping')
+def ping():
+    """Ping endpoint - lightweight health check"""
+    return "ok"
+
 @app.route('/health')
 def health():
     """Health check"""
