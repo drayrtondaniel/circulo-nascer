@@ -1,0 +1,13 @@
+{
+  "name": "circulo-nascer-keeper",
+  "version": "1.0.0",
+  "description": "Health check keeper for Círculo Nascer on Render.com",
+  "main": "keeper/healthcheck.js",
+  "scripts": {
+    "start": "node keeper/healthcheck.js",
+    "keeper": "node keeper/healthcheck.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
