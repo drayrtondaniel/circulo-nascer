@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Círculo Nascer | Consultoria Obstétrica Personalizada — Dr. Ayrton Daniel</title>
+    <meta name="description" content="Consultoria obstétrica complementar ao pré-natal. Dr. Ayrton Daniel: 30+ anos de experiência, formação Unicamp/UFRJ, abordagem humanista baseada em evidências.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Analytics: Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-CIRCULONASCER');
+    </script>
+    
+    <!-- LGPD Consent Manager -->
+    <script>
+        window.lgpdConsent = {
+            accepted: localStorage.getItem('lgpd_accepted') === 'true',
+            categories: { analytics: false, marketing: false }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --sage-deep: #4a5d52;
+            --sage-medium: #6b7f75;
+            --sage-light: #a8b8b0;
+            --offwhite: #faf9f6;
+            --cream: #f2efe9;
+            --champagne: #c9b896;
+            --champagne-light: #e8e0d5;
+            --charcoal: #2c2c2c;
+            --charcoal-light: #4a4a4a;
+            --white: #ffffff;
+            --error: #b85450;
+            --success: #5a7f6e;
+            
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 6rem;
+            --shadow-subtle: 0 2px 12px rgba(74, 93, 82, 0.08);
+            --shadow-elevated: 0 8px 30px rgba(74, 93, 82, 0.12);
+            --border-subtle: 1px solid rgba(201, 184, 150, 0.25);
+            --border-champagne: 1px solid var(--champagne);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fade: opacity 0.5s ease, transform 0.5s ease;
+            
+            /* Acessibilidade mobile */
+            --touch-target-min: 56px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: var(--charcoal-light);
+            line-height: 1.75;
+            background-color: var(--offwhite);
+            background-image: 
+                radial-gradient(ellipse at top, rgba(168, 184, 176, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(201, 184, 150, 0.04) 0%, transparent 50%);
+            overflow-x: hidden;
+        }
+
+        /* Tipografia */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            color: var(--charcoal);
+            line-height: 1.25;
+            margin-bottom: var(--space-sm);
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            position: relative;
+            padding-bottom: var(--space-sm);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 48px;
+            height: 2px;
+            background: var(--champagne);
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        p {
+            margin-bottom: var(--space-sm);
+            font-weight: 300;
+            max-width: 65ch;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+        .light { font-weight: 300; }
+        .medium { font-weight: 500; }
+        .small { font-size: 0.9rem; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .section {
+            padding: var(--space-xl) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Banner Ético Fixo */
+        .ethical-banner {
+            background: var(--cream);
+            border-bottom: var(--border-subtle);
+            padding: var(--space-xs) 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--sage-deep);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .ethical-banner a {
+            color: var(--sage-deep);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--champagne);
+        }
+
+        .ethical-banner a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* Header Minimalista Ajustado sem vídeo */
+        header {
+            background: linear-gradient(180deg, var(--offwhite) 0%, var(--cream) 100%);
+            padding: var(--space-lg) 0 var(--space-xl);
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--champagne);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage-deep);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            letter-spacing: 0.05em;
+        }
+
+        .brand-name span {
+            color: var(--champagne);
+            font-style: italic;
+        }
+
+        .hero-text {
+            margin: 0 auto;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin: 0 auto var(--space-md);
+            color: var(--charcoal-light);
+        }
+
+        .hero-highlight {
+            border-left: 2px solid var(--champagne);
+            margin: var(--space-md) auto;
+            font-style: italic;
+            color: var(--sage-deep);
+            background: rgba(201, 184, 150, 0.08);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+            max-width: 65ch;
+        }
+
+        .hero-benefits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            text-align: left;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            font-size: 0.95rem;
+            color: var(--charcoal-light);
+        }
+
+        .benefit-item::before {
+            content: '';
+            min-width: 6px;
+            height: 6px;
+            background: var(--champagne);
+            border-radius: 50%;
+            margin-top: 0.5rem;
+        }
+
+        /* Onboarding Premium — Quiz Simplificado */
+        .onboarding-section {
+            background: var(--white);
+            position: relative;
+        }
+
+        .onboarding-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--champagne), transparent);
+        }
+
+        .onboarding-container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--offwhite);
+            border-radius: 2px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-subtle);
+            border: var(--border-subtle);
+        }
+
+        .onboarding-intro {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .onboarding-intro p {
+            font-size: 1.05rem;
+            color: var(--charcoal-light);
+            margin-top: var(--space-xs);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-disclaimer {
+            background: rgba(74, 93, 82, 0.04);
+            border-left: 2px solid var(--sage-light);
+            padding: var(--space-sm) var(--space-md);
+            margin-bottom: var(--space-md);
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            padding: 0 var(--space-sm);
+        }
+
+        .progress-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            right: 8%;
+            height: 1px;
+            background: var(--champagne-light);
+            transform: translateY(-50%);
+        }
+
+        .progress-step {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--offwhite);
+            border: 1px solid var(--champagne-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: var(--sage-medium);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition-smooth);
+        }
+
+        .progress-step.active {
+            background: var(--sage-deep);
+            border-color: var(--sage-deep);
+            color: var(--offwhite);
+        }
+
+        .progress-step.completed {
+            background: var(--champagne);
+            border-color: var(--champagne);
+            color: var(--offwhite);
+        }
+
+        .question-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: var(--transition-fade);
+        }
+
+        .question-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .question-prompt {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--charcoal);
+            font-weight: 400;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .option-card {
+            background: var(--white);
+            border: var(--border-subtle);
+            border-radius: 2px;
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            min-height: var(--touch-target-min);
+        }
+
+        .option-card:hover {
+            border-color: var(--champagne);
+            background: rgba(201, 184, 150, 0.04);
+            transform: translateX(4px);
+        }
+
+        .option-card.selected {
+            border-color: var(--sage-deep);
+            background: rgba(74, 93, 82, 0.04);
+            position: relative;
+        }
+
+        .option-card.selected::after {
+            content: '';
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--sage-deep);
+            border-radius: 50%;
+        }
+
+        .option-card.selected::before {
+            content: '';
+            position: absolute;
+            top: calc(var(--space-sm) + 4px);
+            right: calc(var(--space-sm) + 4px);
+            width: 12px;
+            height: 12px;
+            background: var(--sage-deep);
+            border-radius: 50%;
+        }
+
+        .option-marker {
+            min-width: 36px;
+            height: 36px;
+            border-radius: 2px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage-deep);
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .option-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--charcoal);
+        }
+
+        .option-content p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--charcoal-light);
+            font-weight: 300;
+        }
+
+        .option-uncertain {
+            background: var(--cream);
+            border-style: dashed;
+            text-align: center;
+            justify-content: center;
+            margin-top: var(--space-sm);
+        }
+
+        .option-uncertain h4 {
+            font-style: italic;
+            color: var(--sage-medium);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .btn-nav {
+            padding: 0.85rem 2rem;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+            background: transparent;
+            color: var(--charcoal-light);
+            min-height: var(--touch-target-min);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-nav:hover {
+            color: var(--sage-deep);
+        }
+
+        .btn-prev {
+            border: var(--border-subtle);
+        }
+
+        .btn-next {
+            border: 1px solid var(--champagne);
+            color: var(--sage-deep);
+        }
+
+        .btn-next:hover {
+            background: var(--champagne-light);
+        }
+
+        .btn-skip {
+            font-size: 0.9rem;
+            color: var(--sage-light);
+            text-decoration: none;
+            margin: var(--space-xs) auto;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-skip:hover {
+            color: var(--sage-medium);
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            background: var(--sage-deep);
+            color: var(--offwhite);
+            padding: 0.9rem 2.5rem;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: block;
+            margin: var(--space-md) auto 0;
+            width: 100%;
+            max-width: 320px;
+            letter-spacing: 0.02em;
+            min-height: var(--touch-target-min);
+        }
+
+        .btn-submit:hover {
+            background: var(--sage-medium);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(74, 93, 82, 0.15);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* LGPD Consent Modal */
+        .lgpd-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 44, 44, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lgpd-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lgpd-card {
+            background: var(--white);
+            border-radius: 2px;
+            padding: var(--space-lg);
+            max-width: 520px;
+            width: 100%;
+            box-shadow: var(--shadow-elevated);
+            border: var(--border-subtle);
+        }
+
+        .lgpd-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--space-sm);
+            font-style: normal;
+        }
+
+        .lgpd-card p {
+            margin-bottom: var(--space-md);
+            color: var(--charcoal-light);
+            font-size: 0.95rem;
+        }
+
+        .lgpd-options {
+            margin: var(--space-md) 0;
+        }
+
+        .lgpd-option {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xs);
+            font-size: 0.9rem;
+        }
+
+        .lgpd-option input {
+            margin-top: 0.2rem;
+            accent-color: var(--sage-deep);
+        }
+
+        .lgpd-links {
+            font-size: 0.85rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .lgpd-links a {
+            color: var(--sage-deep);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--champagne);
+        }
+
+        .lgpd-links a:hover {
+            border-bottom-style: solid;
+        }
+
+        .btn-lgpd {
+            background: var(--sage-deep);
+            color: var(--offwhite);
+            padding: 0.9rem;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            width: 100%;
+            min-height: var(--touch-target-min);
+        }
+
+        .btn-lgpd:hover {
+            background: var(--sage-medium);
+        }
+
+        /* Lead Capture Optional */
+        .lead-capture {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 44, 44, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lead-capture.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lead-capture-card {
+            background: var(--white);
+            border-radius: 2px;
+            padding: var(--space-lg);
+            max-width: 520px;
+            width: 100%;
+            box-shadow: var(--shadow-elevated);
+            border: var(--border-subtle);
+        }
+
+        .lead-capture-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--space-sm);
+            font-style: normal;
+        }
+
+        .lead-capture-card p {
+            margin-bottom: var(--space-md);
+            color: var(--charcoal-light);
+            font-size: 0.95rem;
+        }
+
+        .lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .lead-form input {
+            padding: 0.9rem var(--space-md);
+            border: var(--border-subtle);
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: var(--offwhite);
+            transition: var(--transition-smooth);
+            min-height: var(--touch-target-min);
+        }
+
+        .lead-form input:focus {
+            outline: none;
+            border-color: var(--champagne);
+            background: var(--white);
+        }
+
+        .lead-form input::placeholder {
+            color: var(--sage-light);
+        }
+
+        .lead-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-xs);
+            font-size: 0.9rem;
+            margin: var(--space-sm) 0;
+            color: var(--charcoal-light);
+        }
+
+        .lead-checkbox input {
+            margin-top: 0.2rem;
+            accent-color: var(--sage-deep);
+        }
+
+        .btn-lead {
+            background: var(--sage-deep);
+            color: var(--offwhite);
+            padding: 0.9rem;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            width: 100%;
+            min-height: var(--touch-target-min);
+            margin-bottom: var(--space-sm);
+        }
+
+        .btn-lead:hover {
+            background: var(--sage-medium);
+        }
+
+        .btn-lead-skip {
+            background: transparent;
+            color: var(--sage-light);
+            padding: 0.75rem;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 100%;
+            text-decoration: underline;
+        }
+
+        .btn-lead-skip:hover {
+            color: var(--sage-medium);
+        }
+
+        .lead-note {
+            font-size: 0.8rem;
+            color: var(--sage-light);
+            text-align: center;
+            margin-top: var(--space-sm);
+        }
+
+        /* Recommendation Section */
+        .recommendation-section {
+            display: none;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--offwhite) 100%);
+            padding: var(--space-xl) 0;
+        }
+
+        .recommendation-section.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .recommendation-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 2px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-elevated);
+            border: var(--border-subtle);
+            text-align: center;
+        }
+
+        .recommendation-badge {
+            display: inline-block;
+            background: var(--champagne-light);
+            color: var(--sage-deep);
+            padding: 0.35rem 1.25rem;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: var(--space-md);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .recommendation-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--space-xs);
+            font-style: normal;
+        }
+
+        .recommendation-subtitle {
+            font-style: italic;
+            color: var(--charcoal-light);
+            margin-bottom: var(--space-md);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .diagnostic-reason {
+            background: rgba(74, 93, 82, 0.04);
+            border-left: 2px solid var(--sage-deep);
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            text-align: left;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .diagnostic-reason-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--sage-deep);
+        }
+
+        .flexibility-note {
+            font-size: 0.9rem;
+            color: var(--sage-medium);
+            font-style: italic;
+            margin-top: var(--space-xs);
+        }
+
+        .plan-preview {
+            background: var(--offwhite);
+            border-radius: 2px;
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            text-align: left;
+            border: var(--border-subtle);
+        }
+
+        .plan-preview-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--charcoal);
+        }
+
+        .plan-preview-features {
+            list-style: none;
+            padding-left: var(--space-md);
+        }
+
+        .plan-preview-features li {
+            padding: 0.35rem 0;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--charcoal-light);
+        }
+
+        .plan-preview-features li::before {
+            content: '';
+            position: absolute;
+            left: -var(--space-md);
+            top: 0.7rem;
+            width: 5px;
+            height: 5px;
+            background: var(--champagne);
+            border-radius: 50%;
+        }
+
+        .recommendation-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--sage-deep);
+            margin: var(--space-md) 0;
+        }
+
+        .recommendation-price span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--charcoal-light);
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--sage-light);
+            font-style: italic;
+            margin-bottom: var(--space-md);
+        }
+
+        .btn-recommendation {
+            background: var(--sage-deep);
+            color: var(--offwhite);
+            padding: 1rem 2.5rem;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-sm);
+            letter-spacing: 0.02em;
+            min-height: var(--touch-target-min);
+        }
+
+        .btn-recommendation:hover {
+            background: var(--sage-medium);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(74, 93, 82, 0.15);
+        }
+
+        .btn-secondary-outline {
+            background: transparent;
+            color: var(--sage-deep);
+            padding: 0.9rem 2rem;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid var(--champagne);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-top: var(--space-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            min-height: var(--touch-target-min);
+        }
+
+        .btn-secondary-outline:hover {
+            background: var(--champagne-light);
+        }
+
+        .other-plans-link {
+            margin-top: var(--space-md);
+            font-size: 0.95rem;
+            color: var(--charcoal-light);
+        }
+
+        .other-plans-link a {
+            color: var(--sage-deep);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed var(--champagne);
+            padding-bottom: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .other-plans-link a:hover {
+            border-bottom-style: solid;
+            color: var(--champagne);
+        }
+
+        /* Sobre o Dr. Ayrton */
+        .doctor-section {
+            background: var(--white);
+        }
+
+        .doctor-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+
+        .doctor-portrait {
+            position: relative;
+            border-radius: 2px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--sage-light), var(--cream));
+            aspect-ratio: 4/5;
+            border: var(--border-subtle);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .doctor-portrait-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage-deep);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: var(--space-md);
+            font-style: italic;
+        }
+
+        .doctor-content h2 {
+            margin-bottom: var(--space-md);
+        }
+
+        .doctor-content > p {
+            margin-bottom: var(--space-md);
+        }
+
+        .doctor-credentials {
+            list-style: none;
+            margin: var(--space-md) 0;
+            border-left: 2px solid var(--champagne-light);
+            padding-left: var(--space-md);
+        }
+
+        .doctor-credentials li {
+            padding: var(--space-xs) 0;
+            font-weight: 300;
+            color: var(--charcoal-light);
+        }
+
+        .doctor-credentials li strong {
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .testimonial-doctor {
+            background: rgba(201, 184, 150, 0.08);
+            border-radius: 2px;
+            padding: var(--space-md);
+            margin: var(--space-md) 0;
+            border-left: 2px solid var(--champagne);
+            font-style: italic;
+        }
+
+        .testimonial-doctor p {
+            margin: 0 0 var(--space-xs);
+            font-size: 1.05rem;
+        }
+
+        .testimonial-doctor .author {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: var(--sage-deep);
+            font-style: normal;
+            font-size: 0.95rem;
+        }
+
+        /* Planos Premium */
+        .plans-section {
+            background: var(--cream);
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .plan-card {
+            background: var(--white);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            border: var(--border-subtle);
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-elevated);
+            border-color: var(--champagne);
+        }
+
+        .plan-card.recommended {
+            border-color: var(--sage-deep);
+            box-shadow: 0 8px 30px rgba(74, 93, 82, 0.15);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: var(--space-sm);
+            right: calc(-1rem + 2px);
+            background: var(--sage-deep);
+            color: var(--offwhite);
+            padding: 0.3rem 2.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transform: rotate(45deg) translateX(12px);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .plan-header {
+            padding: var(--space-md);
+            text-align: center;
+            border-bottom: var(--border-subtle);
+        }
+
+        .plan-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--offwhite);
+            font-weight: 500;
+        }
+
+        .plan-essential .plan-icon { background: linear-gradient(135deg, var(--sage-medium), var(--sage-deep)); }
+        .plan-acompanhamento .plan-icon { background: linear-gradient(135deg, var(--champagne), #b8a98a); }
+        .plan-integral .plan-icon { background: linear-gradient(135deg, var(--sage-deep), #3a4a42); }
+
+        .plan-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin: var(--space-xs) 0;
+            color: var(--charcoal);
+        }
+
+        .plan-description {
+            font-size: 0.95rem;
+            color: var(--charcoal-light);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .plan-price {
+            padding: var(--space-md);
+            text-align: center;
+            background: var(--offwhite);
+            border-top: var(--border-subtle);
+            border-bottom: var(--border-subtle);
+        }
+
+        .price-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            font-weight: 400;
+            color: var(--sage-deep);
+            display: block;
+        }
+
+        .price-period {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            display: block;
+            margin-top: var(--space-xs);
+            font-weight: 300;
+        }
+
+        .plan-features {
+            padding: var(--space-md);
+            flex-grow: 1;
+        }
+
+        .plan-features ul {
+            list-style: none;
+            margin: var(--space-sm) 0;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            padding-left: var(--space-md);
+            position: relative;
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: var(--charcoal-light);
+            text-align: left;
+        }
+
+        .plan-features li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.9rem;
+            width: 5px;
+            height: 5px;
+            background: var(--champagne);
+            border-radius: 50%;
+        }
+
+        .plan-cta {
+            padding: 0 var(--space-md) var(--space-md);
+            text-align: center;
+        }
+
+        .btn-plan {
+            display: inline-block;
+            background: transparent;
+            color: var(--sage-deep);
+            padding: 0.85rem 1.8rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--champagne);
+            width: 100%;
+            letter-spacing: 0.02em;
+            min-height: var(--touch-target-min);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-plan:hover {
+            background: var(--champagne-light);
+            transform: translateY(-1px);
+        }
+
+        .plan-card.recommended .btn-plan {
+            background: var(--sage-deep);
+            color: var(--offwhite);
+            border-color: var(--sage-deep);
+        }
+
+        .plan-card.recommended .btn-plan:hover {
+            background: var(--sage-medium);
+        }
+
+        /* Depoimentos Verificáveis */
+        .testimonials-section {
+            background: var(--offwhite);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 2px;
+            padding: var(--space-md);
+            box-shadow: var(--shadow-subtle);
+            border-left: 2px solid var(--champagne);
+            text-align: left;
+        }
+
+        .testimonial-text {
+            margin: var(--space-sm) 0;
+            font-style: italic;
+            color: var(--charcoal-light);
+            font-weight: 300;
+        }
+
+        .testimonial-author {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: var(--sage-deep);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-context {
+            font-size: 0.85rem;
+            color: var(--sage-light);
+            margin-top: var(--space-xs);
+        }
+
+        .testimonial-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-size: 0.8rem;
+            color: var(--success);
+            margin-top: var(--space-xs);
+        }
+
+        /* CTA Final */
+        .cta-section {
+            background: linear-gradient(180deg, var(--sage-deep) 0%, #3a4a42 100%);
+            color: var(--offwhite);
+            text-align: center;
+            padding: var(--space-xl) 0;
+        }
+
+        .cta-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .cta-title {
+            color: var(--offwhite);
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+            opacity: 0.95;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-context {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 2px;
+            margin: var(--space-md) auto;
+            font-size: 0.95rem;
+            font-style: italic;
+            max-width: 550px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .btn-primary {
+            background: var(--champagne);
+            color: var(--charcoal);
+            padding: 1rem 2.2rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            border: none;
+            letter-spacing: 0.02em;
+            min-height: var(--touch-target-min);
+        }
+
+        .btn-primary:hover {
+            background: #d4c8ab;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--offwhite);
+            padding: 1rem 2.2rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: var(--touch-target-min);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--champagne);
+        }
+
+        .cta-note {
+            margin-top: var(--space-md);
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.85;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer Minimalista Alinhado e Uniforme */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            padding: var(--space-lg) 0 var(--space-md);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .footer-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: var(--space-xs);
+            color: var(--offwhite);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+        }
+
+        .footer-brand span {
+            color: var(--champagne);
+            font-style: italic;
+        }
+
+        .footer-credentials {
+            margin: 0;
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: var(--space-xs);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .copyright {
+            margin-top: var(--space-sm);
+            padding-top: var(--space-sm);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            opacity: 0.7;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Responsividade Premium */
+        @media (max-width: 992px) {
+            .doctor-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .doctor-credentials {
+                border-left: none;
+                padding-left: 0;
+                border-top: 2px solid var(--champagne-light);
+                padding-top: var(--space-md);
+            }
+            .doctor-portrait {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .plan-card.recommended {
+                transform: none;
+            }
+            .plan-card.recommended:hover {
+                transform: translateY(-4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: var(--space-lg) 0;
+            }
+            h1 { font-size: 2.25rem; }
+            .hero-benefits {
+                grid-template-columns: 1fr;
+                align-items: flex-start;
+            }
+            .onboarding-container {
+                padding: var(--space-md);
+            }
+            .question-prompt {
+                font-size: 1.25rem;
+            }
+            .plans-container {
+                grid-template-columns: 1fr;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+            }
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            .btn-nav {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--space-sm);
+            }
+            .brand-name { font-size: 1.3rem; }
+            .hero-text p { font-size: 1rem; }
+            .progress-indicator::before { left: 5%; right: 5%; }
+            .option-card {
+                padding: var(--space-sm);
+                gap: var(--space-sm);
+            }
+            .option-marker {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            .recommendation-title { font-size: 1.5rem; }
+            .recommendation-price { font-size: 1.75rem; }
+            :root {
+                --touch-target-min: 48px;
+            }
+        }
+
+        /* Animações e Acessibilidade */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        a:focus, button:focus, input:focus {
+            outline: 2px solid var(--champagne);
+            outline-offset: 2px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-CIRCULONASCER"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Banner Ético Fixo -->
+    <div class="ethical-banner">
+        Consultoria complementar ao pré-natal médico • Não substitui atendimento clínico • 
+        <a href="#disclaimer">Saiba mais sobre nossa conduta ética</a>
+    </div>
+
+    <!-- Header (Sem espaço de vídeo) -->
+    <header>
+        <div class="container">
+            <div class="header-content fade-in">
+                <div class="brand">
+                    <div class="brand-mark">CN</div>
+                    <div class="brand-name">Círculo <span>Nascer</span></div>
+                </div>
+                <h1>Consultoria Obstétrica Personalizada</h1>
+                <p>A gestação é um tempo de decisões importantes — clínicas, emocionais e familiares. Nem sempre o pré-natal tradicional oferece espaço suficiente para conversa, reflexão e escuta.</p>
+                
+                <div class="hero-highlight">
+                    O Círculo Nascer oferece consultoria obstétrica complementar ao seu acompanhamento médico regular, com foco em segurança baseada em evidências e acolhimento humanizado.
+                </div>
+                
+                <div class="hero-benefits">
+                    <div class="benefit-item">Orientação fundamentada em evidências científicas</div>
+                    <div class="benefit-item">Clareza para decisões informadas</div>
+                    <div class="benefit-item">Prevenção de intervenções sem indicação clínica</div>
+                    <div class="benefit-item">Acolhimento do casal em toda a jornada</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Onboarding Simplificado -->
+    <section class="section onboarding-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Encontre o acompanhamento ideal</h2>
+            </div>
+            
+            <div class="onboarding-container">
+                <div class="onboarding-intro">
+                    <h3 class="serif">Triagem personalizada para seu momento</h3>
+                    <p>Em menos de 2 minutos, desenvolvemos uma orientação para apoiar sua decisão com clareza.</p>
+                </div>
+                
+                <div class="quiz-disclaimer">
+                    Esta triagem não substitui avaliação médica. Os resultados são orientações educacionais para apoiar sua conversa com seu obstetra.
+                </div>
+                
+                <div class="progress-indicator">
+                    <div class="progress-step active" data-step="1">1</div>
+                    <div class="progress-step" data-step="2">2</div>
+                </div>
+                
+                <!-- Step 1: Trimestre -->
+                <div class="question-step active" data-step="1">
+                    <h4 class="question-prompt">Em qual momento da gestação você se encontra?</h4>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="primeiro">
+                            <div class="option-marker">I</div>
+                            <div class="option-content">
+                                <h4>Primeiro trimestre</h4>
+                                <p>Até 13 semanas</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="segundo">
+                            <div class="option-marker">II</div>
+                            <div class="option-content">
+                                <h4>Segundo trimestre</h4>
+                                <p>14 a 27 semanas</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="terceiro">
+                            <div class="option-marker">III</div>
+                            <div class="option-content">
+                                <h4>Terceiro trimestre</h4>
+                                <p>28 semanas ou mais</p>
+                            </div>
+                        </div>
+                        <div class="option-card option-uncertain" data-value="nao-sei">
+                            <div class="option-content">
+                                <h4>Não tenho certeza</h4>
+                                <p>Posso receber orientação geral</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn-nav btn-next" disabled>Continuar</button>
+                    </div>
+                    <a href="#plans-section" class="btn-skip">Prefiro ver todos os planos</a>
+                </div>
+                
+                <!-- Step 2: Expectativa principal -->
+                <div class="question-step" data-step="2">
+                    <h4 class="question-prompt">O que mais importa para você neste momento?</h4>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="orientacao">
+                            <div class="option-marker">ⓘ</div>
+                            <div class="option-content">
+                                <h4>Entender exames e opções</h4>
+                                <p>Clareza técnica sobre procedimentos</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="suporte">
+                            <div class="option-marker">☾</div>
+                            <div class="option-content">
+                                <h4>Espaço para dúvidas</h4>
+                                <p>Acolhimento para inseguranças</p>
+                            </div>
+                        </div>
+                        <div class="option-card" data-value="planejamento">
+                            <div class="option-marker">✎</div>
+                            <div class="option-content">
+                                <h4>Preparar o parto</h4>
+                                <p>Construir um plano personalizado</p>
+                            </div>
+                        </div>
+                        <div class="option-card option-uncertain" data-value="geral">
+                            <div class="option-content">
+                                <h4>Quero conhecer as opções</h4>
+                                <p>Sem compromisso, apenas orientação</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button class="btn-nav btn-prev">Retornar</button>
+                        <button class="btn-submit" disabled>Ver orientação</button>
+                    </div>
+                    <a href="#plans-section" class="btn-skip">Ver planos diretamente</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LGPD Consent Modal -->
+    <div class="lgpd-modal" id="lgpdModal">
+        <div class="lgpd-card">
+            <h3 class="serif">Seus dados, sua escolha</h3>
+            <p>Para personalizar sua experiência, utilizamos suas respostas de forma anonimizada. Você pode controlar como seus dados são usados:</p>
+            
+            <div class="lgpd-options">
+                <label class="lgpd-option">
+                    <input type="checkbox" id="consentAnalytics" checked>
+                    <span>Permitir análise anônima para melhorar nosso atendimento</span>
+                </label>
+                <label class="lgpd-option">
+                    <input type="checkbox" id="consentMarketing">
+                    <span>Receber conteúdos educativos por e-mail (opcional)</span>
+                </label>
+            </div>
+            
+            <div class="lgpd-links">
+                <a href="#">Política de Privacidade</a> • 
+                <a href="#">Termos de Uso</a>
+            </div>
+            
+            <button class="btn-lgpd" id="lgpdAccept">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Lead Capture Optional -->
+    <div class="lead-capture" id="leadCapture">
+        <div class="lead-capture-card">
+            <h3 class="serif">Receba sua orientação por e-mail</h3>
+            <p>Enviamos um resumo da recomendação + guia de perguntas para sua próxima consulta com seu obstetra.</p>
+            
+            <form class="lead-form" id="leadForm">
+                <input type="text" name="name" placeholder="Seu nome" required>
+                <input type="email" name="email" placeholder="Seu e-mail" required>
+                <input type="tel" name="whatsapp" placeholder="WhatsApp (opcional)">
+            </form>
+            
+            <label class="lead-checkbox">
+                <input type="checkbox" id="leadConsent" required>
+                <span>Concordo em receber materiais educativos e posso cancelar a qualquer momento. <a href="#">Política de Privacidade</a></span>
+            </label>
+            
+            <button type="submit" class="btn-lead">Receber orientação</button>
+            <button type="button" class="btn-lead-skip" id="leadSkip">Pular e ver recomendação agora</button>
+            
+            <p class="lead-note">Seus dados são protegidos e não são compartilhados com terceiros.</p>
+        </div>
+    </div>
+
+    <!-- Recommendation Section -->
+    <section class="recommendation-section" id="recommendation">
+        <div class="container">
+            <div class="recommendation-card">
+                <span class="recommendation-badge">Orientação personalizada</span>
+                <h3 class="recommendation-title serif" id="rec-title">Plano Acompanhamento — Presença</h3>
+                <p class="recommendation-subtitle" id="rec-subtitle">Equilíbrio entre suporte e autonomia na jornada</p>
+                
+                <div class="diagnostic-reason">
+                    <div class="diagnostic-reason-title serif">Fundamentação da orientação</div>
+                    <p id="rec-reason">Considerando seu perfil, este plano oferece acompanhamento contínuo com reavaliações regulares e canal para dúvidas, apoiando segurança clínica e emocional em cada etapa.</p>
+                    <p class="flexibility-note">Esta é uma orientação. Podemos adaptar o plano conforme sua realidade e necessidades específicas.</p>
+                </div>
+                
+                <div class="plan-preview">
+                    <div class="plan-preview-title">Benefícios incluídos</div>
+                    <ul class="plan-preview-features" id="rec-features">
+                        <li>Reavaliações bimestrais aprofundadas</li>
+                        <li>Suporte para dúvidas com resposta em até 72h</li>
+                        <li>Atendimento de urgência por ligação (horário comercial)</li>
+                        <li>Encontro presencial ou online mensal (individual ou casal)</li>
+                    </ul>
+                </div>
+                
+                <div class="recommendation-price">
+                    R$ 490,00 <span>/mês — plano trimestral</span>
+                </div>
+                <p class="price-note">Valores podem ser parcelados. Entre em contato para opções personalizadas.</p>
+                
+                <a href="https://cal.com/dr-ayrton?origem=quiz" target="_blank" class="btn-recommendation" id="rec-cta">
+                    Agendar consulta inicial
+                </a>
+                
+                <button class="btn-secondary-outline" id="show-all-plans">
+                    Explorar todos os planos
+                </button>
+                
+                <p class="other-plans-link">
+                    Prefere comparar todas as opções? <a id="browse-plans">Ver planos completos</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Dr. Ayrton -->
+    <section class="section doctor-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dr. Ayrton Daniel Ribeiro Filho</h2>
+            </div>
+            <div class="doctor-container">
+                <div class="doctor-portrait">
+                    <div class="doctor-portrait-placeholder">
+                        Fotografia em produção<br>
+                        <em>Consultório • Campinas, SP</em>
+                    </div>
+                </div>
+                <div class="doctor-content">
+                    <p>Com mais de 30 anos dedicados à obstetrícia, o Dr. Ayrton Daniel une excelência técnica acadêmica a uma abordagem profundamente humanista.</p>
+                    
+                    <ul class="doctor-credentials">
+                        <li><strong>Formação:</strong> Graduação pela UFRJ; residência, mestrado e doutorado pela Unicamp</li>
+                        <li><strong>Visão integrativa:</strong> Pós-doutorado em Psicologia Analítica Junguiana; formação em Medicina Antroposófica</li>
+                        <li><strong>Experiência pessoal:</strong> Pai de três filhos nascidos sob sua assistência direta</li>
+                    </ul>
+                    
+                    <div class="testimonial-doctor">
+                        <p>"Dr. Ayrton é uma pessoa extremamente acolhedora... tirou todas as minhas dúvidas e angústias com paciência. Me senti segura e bem assistida em todo momento."</p>
+                        <span class="author">— Victoria G., paciente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos -->
+    <section class="section plans-section" id="plans-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Planos de Acompanhamento</h2>
+                <p style="margin-top: var(--space-sm); max-width: 600px; margin-left: auto; margin-right: auto; font-style: italic; color: var(--charcoal-light);">Três níveis de cuidado desenhados para caminhar com consciência em cada etapa</p>
+            </div>
+            
+            <div class="plans-container">
+                <!-- Essencial -->
+                <div class="plan-card plan-essential" id="plan-essential">
+                    <div class="plan-header">
+                        <div class="plan-icon">I</div>
+                        <h3 class="plan-name">Essencial — Orientação</h3>
+                        <p class="plan-description">Segurança técnica e organização fundamentada</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-value">R$ 247,00</span>
+                        <span class="price-period">/mês — compromisso trimestral (Total R$ 741,00)</span>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>Revisão do pré-natal por trimestre</li>
+                            <li>Sugestão e orientação personalizada sobre exames</li>
+                            <li>Suporte via WhatsApp (resposta em até 72h)</li>
+                            <li>Encontro em grupo (videochamada, 90 min)</li>
+                        </ul>
+                    </div>
+                    <div class="plan-cta">
+                        <a href="https://cal.com/dr-ayrton?plano=essential" target="_blank" class="btn-plan">Selecionar Essencial</a>
+                    </div>
+                </div>
+                
+                <!-- Acompanhamento -->
+                <div class="plan-card plan-acompanhamento recommended" id="plan-acompanhamento">
+                    <div class="plan-badge">Recomendado</div>
+                    <div class="plan-header">
+                        <div class="plan-icon">II</div>
+                        <h3 class="plan-name">Acompanhamento — Presença</h3>
+                        <p class="plan-description">Contato direto e continuidade no cuidado</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-value">R$ 490,00</span>
+                        <span class="price-period">/mês — compromisso trimestral (Total R$ 1.470,00)</span>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>Reavaliações bimestrais aprofundadas</li>
+                            <li>Suporte para dúvidas com resposta em até 72h</li>
+                            <li>Atendimento de urgência por ligação (horário comercial)</li>
+                            <li>Encontro mensal (individual ou casal)</li>
+                        </ul>
+                    </div>
+                    <div class="plan-cta">
+                        <a href="https://cal.com/dr-ayrton?plano=acompanhamento" target="_blank" class="btn-plan">Selecionar Acompanhamento</a>
+                    </div>
+                </div>
+                
+                <!-- Integral -->
+                <div class="plan-card plan-integral" id="plan-integral">
+                    <div class="plan-header">
+                        <div class="plan-icon">III</div>
+                        <h3 class="plan-name">Integral — Vínculo</h3>
+                        <p class="plan-description">Cuidado profundo e personalizado</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-value">R$ 890,00</span>
+                        <span class="price-period">/mês — compromisso trimestral (Total R$ 2.670,00)</span>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li>Reavaliações mensais (quinzenais no 9º mês)</li>
+                            <li>Atendimento de urgência por ligação 24 horas</li>
+                            <li>Construção conjunta do Plano de Parto baseado em evidências</li>
+                            <li>Canal prioritário e foco total no vínculo emocional e clínico</li>
+                        </ul>
+                    </div>
+                    <div class="plan-cta">
+                        <a href="https://cal.com/dr-ayrton?plano=integral" target="_blank" class="btn-plan">Selecionar Integral</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Verificáveis -->
+    <section class="section testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Relatos de Pacientes</h2>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Excelente profissional, atencioso, experiente e sempre disponível... respeitou meus desejos. Um profissional verdadeiramente humanizado."</p>
+                    <div class="testimonial-author">Marcela N.</div>
+                    <div class="testimonial-context">Gestação de baixo risco • Campinas, SP</div>
+                    <div class="testimonial-verified">✓ Depoimento verificado</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Passa segurança e tranquilidade na consulta. Senti que minhas escolhas eram respeitadas e fundamentadas."</p>
+                    <div class="testimonial-author">Luciana S.</div>
+                    <div class="testimonial-context">Primeira gestação • Valinhos, SP</div>
+                    <div class="testimonial-verified">✓ Depoimento verificado</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"O melhor profissional que poderia ter escolhido para acompanhar minha gestação de risco. Acolhimento e técnica em equilíbrio."</p>
+                    <div class="testimonial-author">Gabriela M.</div>
+                    <div class="testimonial-context">Gestação com atenção especializada • Indaiatuba, SP</div>
+                    <div class="testimonial-verified">✓ Depoimento verificado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final com Contexto -->
+    <section class="cta-section" id="contato">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title serif">Pronta para iniciar com clareza?</h2>
+                <p class="cta-subtitle">Não substitua seu pré-natal. Potencialize-o com quem une medicina baseada em evidências e humanismo. Vagas limitadas para preservar a qualidade do acolhimento.</p>
+                
+                <div class="cta-context">
+                    Consulta online de 45 minutos • Complementar ao seu pré-natal • Agende em 2 minutos
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="https://cal.com/dr-ayrton" target="_blank" class="btn-primary">
+                        Agendar consulta inicial
+                    </a>
+                    <a href="https://wa.me/5519999999999" target="_blank" class="btn-secondary">
+                        Conversar via WhatsApp
+                    </a>
+                </div>
+                
+                <p class="cta-note">Atendimento personalizado em Campinas e região • Consultoria online disponível para todo o Brasil</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Alinhado e Uniforme -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">Círculo <span>Nascer</span></div>
+            <p class="footer-credentials">Dr. Ayrton Daniel Ribeiro Filho • CRM-SP 123.456 • RQE 45.678</p>
+            <p class="footer-credentials">Campinas, São Paulo • Consultoria presencial e online</p>
+            
+            <p class="footer-disclaimer" id="disclaimer">
+                Esta consultoria é complementar ao acompanhamento obstétrico regular e não substitui avaliação, diagnóstico ou tratamento médico. Todas as orientações são baseadas em evidências científicas e respeitam as diretrizes do Conselho Federal de Medicina (Resolução CFM nº 2.314/2022).
+            </p>
+            
+            <div class="copyright">
+                &copy; 2026 Círculo Nascer. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Analytics Layer
+            function trackEvent(eventName, eventData = {}) {
+                if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push({
+                        event: eventName,
+                        ...eventData,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+                console.log(`[Analytics] ${eventName}`, eventData);
+            }
+
+            // LGPD Consent
+            const lgpdModal = document.getElementById('lgpdModal');
+            const lgpdAccept = document.getElementById('lgpdAccept');
+            
+            // Show LGPD modal on first quiz interaction
+            document.querySelector('.btn-next')?.addEventListener('click', function() {
+                if (!window.lgpdConsent.accepted) {
+                    lgpdModal.classList.add('active');
+                    trackEvent('lgpd_modal_displayed');
+                }
+            });
+            
+            lgpdAccept.addEventListener('click', function() {
+                window.lgpdConsent.accepted = true;
+                window.lgpdConsent.categories.analytics = document.getElementById('consentAnalytics').checked;
+                window.lgpdConsent.categories.marketing = document.getElementById('consentMarketing').checked;
+                localStorage.setItem('lgpd_accepted', 'true');
+                lgpdModal.classList.remove('active');
+                
+                trackEvent('lgpd_consent_given', {
+                    analytics: window.lgpdConsent.categories.analytics,
+                    marketing: window.lgpdConsent.categories.marketing
+                });
+            });
+
+            // Quiz Logic
+            const answers = {};
+            let currentStep = 1;
+            
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const step = this.closest('.question-step');
+                    step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    answers[`q${step.dataset.step}`] = this.dataset.value;
+                    const nextBtn = step.querySelector('.btn-next, .btn-submit');
+                    if (nextBtn) nextBtn.disabled = false;
+                    
+                    trackEvent('quiz_option_selected', {
+                        step: step.dataset.step,
+                        value: this.dataset.value
+                    });
+                });
+            });
+            
+            document.querySelectorAll('.btn-next').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    trackEvent('quiz_step_completed', { step: currentStep });
+                    
+                    document.querySelector(`.question-step[data-step="${currentStep}"]`).classList.remove('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add('completed');
+                    
+                    currentStep++;
+                    document.querySelector(`.question-step[data-step="${currentStep}"]`).classList.add('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add('active');
+                    
+                    trackEvent('quiz_step_started', { step: currentStep });
+                    
+                    if (currentStep === 2) {
+                        this.style.display = 'none';
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.btn-prev').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelector(`.question-step[data-step="${currentStep}"]`).classList.remove('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove('completed');
+                    
+                    currentStep--;
+                    document.querySelector(`.question-step[data-step="${currentStep}"]`).classList.add('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add('active');
+                    
+                    if (currentStep < 2) {
+                        const nextBtn = document.querySelector(`.question-step[data-step="${currentStep}"] .btn-next`);
+                        if (nextBtn) {
+                            nextBtn.style.display = 'block';
+                            nextBtn.disabled = !document.querySelector(`.question-step[data-step="${currentStep}"] .option-card.selected`);
+                        }
+                    }
+                });
+            });
+            
+            // Quiz submission → optional lead capture
+            document.querySelector('.btn-submit').addEventListener('click', function() {
+                if (this.disabled) return;
+                
+                trackEvent('quiz_completed', { answers });
+                
+                // Show optional lead capture
+                document.getElementById('leadCapture').classList.add('active');
+                trackEvent('lead_capture_displayed');
+            });
+            
+            // Lead form submission
+            document.getElementById('leadForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!document.getElementById('leadConsent').checked) {
+                    alert('Para receber materiais, é necessário concordar com nossa Política de Privacidade.');
+                    return;
+                }
+                
+                const formData = {
+                    name: this.name.value,
+                    email: this.email.value,
+                    whatsapp: this.whatsapp.value,
+                    quiz_answers: { ...answers },
+                    timestamp: new Date().toISOString()
+                };
+                
+                trackEvent('lead_captured', {
+                    email: formData.email,
+                    has_whatsapp: !!formData.whatsapp,
+                    quiz_profile: `${answers.q1 || 'nao-sei'}_${answers.q2 || 'geral'}`
+                });
+                
+                // Integration point: send to CRM/webhook here
+                
+                document.getElementById('leadCapture').classList.remove('active');
+                showRecommendation();
+            });
+            
+            // Skip lead capture
+            document.getElementById('leadSkip').addEventListener('click', function() {
+                trackEvent('lead_capture_skipped');
+                document.getElementById('leadCapture').classList.remove('active');
+                showRecommendation();
+            });
+            
+            function showRecommendation() {
+                const planoRecomendado = calcularPlanoRecomendado(answers);
+                atualizarRecomendacao(planoRecomendado);
+                
+                document.getElementById('recommendation').classList.add('active');
+                document.getElementById('recommendation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                trackEvent('recommendation_viewed', { plano: planoRecomendado });
+                
+                document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('recommended'));
+                document.getElementById(`plan-${planoRecomendado}`).classList.add('recommended');
+            }
+            
+            function calcularPlanoRecomendado(answers) {
+                const trimestre = answers.q1;
+                const expectativa = answers.q2;
+                
+                if (trimestre === 'nao-sei' || expectativa === 'geral') {
+                    return 'acompanhamento'; // Padrão equilibrado
+                }
+                if (trimestre === 'terceiro' || expectativa === 'planejamento') {
+                    return 'integral';
+                }
+                if (expectativa === 'suporte' || trimestre === 'primeiro') {
+                    return 'acompanhamento';
+                }
+                return 'essential';
+            }
+            
+            function atualizarRecomendacao(plano) {
+                const planos = {
+                    essential: {
+                        titulo: 'Plano Essencial — Orientação',
+                        subtitle: 'Base sólida para uma gestação tranquila e informada',
+                        reason: 'Para quem busca organização e segurança técnica, este plano oferece revisão periódica do pré-natal e orientação fundamentada sobre exames, garantindo clareza em cada decisão.',
+                        features: [
+                            'Revisão do pré-natal por trimestre',
+                            'Sugestão e orientação personalizada sobre exames',
+                            'Suporte via WhatsApp (resposta em até 72h)',
+                            'Encontro em grupo (videochamada, 90 min)'
+                        ],
+                        preco: 'R$ 247,00'
+                    },
+                    acompanhamento: {
+                        titulo: 'Plano Acompanhamento — Presença',
+                        subtitle: 'Equilíbrio entre suporte personalizado e autonomia na jornada',
+                        reason: 'Considerando seu perfil, este plano oferece acompanhamento contínuo com reavaliações regulares e canal dedicado para dúvidas, apoiando segurança clínica e emocional em cada etapa.',
+                        features: [
+                            'Reavaliações bimestrais aprofundadas',
+                            'Suporte para dúvidas com resposta em até 72h',
+                            'Atendimento de urgência por ligação (horário comercial)',
+                            'Encontro mensal (individual ou casal)'
+                        ],
+                        preco: 'R$ 490,00'
+                    },
+                    integral: {
+                        titulo: 'Plano Integral — Vínculo',
+                        subtitle: 'Cuidado profundo e contínuo para momentos que exigem atenção especial',
+                        reason: 'Para gestações que demandam acompanhamento redobrado ou para quem deseja o máximo de suporte personalizado, este plano oferece acompanhamento mensal, urgência 24h e construção conjunta do seu Plano de Parto fundamentado.',
+                        features: [
+                            'Reavaliações mensais (quinzenais no 9º mês)',
+                            'Atendimento de urgência por ligação 24 horas',
+                            'Construção conjunta do Plano de Parto baseado em evidências',
+                            'Canal prioritário e foco total no vínculo emocional e clínico'
+                        ],
+                        preco: 'R$ 890,00'
+                    }
+                };
+                
+                const planoData = planos[plano];
+                document.getElementById('rec-title').textContent = planoData.titulo;
+                document.getElementById('rec-subtitle').textContent = planoData.subtitle;
+                document.getElementById('rec-reason').textContent = planoData.reason;
+                document.querySelector('.recommendation-price').innerHTML = `${planoData.preco} <span>/mês — plano trimestral</span>`;
+                
+                const featuresList = document.getElementById('rec-features');
+                featuresList.innerHTML = '';
+                planoData.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    featuresList.appendChild(li);
+                });
+                
+                const ctaBtn = document.getElementById('rec-cta');
+                ctaBtn.href = `https://cal.com/dr-ayrton?plano=${plano}&origem=quiz`;
+            }
+            
+            // Navigation
+            document.getElementById('show-all-plans').addEventListener('click', function() {
+                trackEvent('browse_all_plans_clicked');
+                document.getElementById('plans-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            
+            document.getElementById('browse-plans').addEventListener('click', function(e) {
+                e.preventDefault();
+                trackEvent('browse_plans_link_clicked');
+                document.getElementById('plans-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            
+            // Track initial events
+            trackEvent('quiz_started', { page: 'landing_otimizada' });
+            trackEvent('quiz_step_started', { step: 1 });
+            
+            // Mobile touch optimization
+            document.querySelectorAll('.option-card, .btn-plan, .btn-nav, .btn-submit, .btn-primary, .btn-secondary').forEach(el => {
+                el.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                el.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        trackEvent('internal_link_clicked', { target: href });
+                        window.scrollTo({
+                            top: target.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
