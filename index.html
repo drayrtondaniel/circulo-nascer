@@ -1012,7 +1012,7 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: var(--space-lg);
-            align-items: start;
+            align-items: center;
         }
 
         .doctor-portrait {
@@ -1025,18 +1025,11 @@
             box-shadow: var(--shadow-elevated);
         }
 
-        .doctor-portrait-placeholder {
+        .doctor-portrait img {
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--sage-deep);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            text-align: center;
-            padding: var(--space-md);
-            font-style: italic;
+            object-fit: cover;
+            display: block;
         }
 
         .doctor-content h2 {
@@ -1830,10 +1823,7 @@
             </div>
             <div class="doctor-container">
                 <div class="doctor-portrait">
-                    <div class="doctor-portrait-placeholder">
-                        Fotografia em produção<br>
-                        <em>Consultório • Campinas, SP</em>
-                    </div>
+                    <img src="static/dr_ayrton.png" alt="Dr. Ayrton Daniel Ribeiro Filho">
                 </div>
                 <div class="doctor-content">
                     <p>Com mais de 30 anos dedicados à obstetrícia, o Dr. Ayrton Daniel une excelência técnica acadêmica a uma abordagem profundamente humanista.</p>
