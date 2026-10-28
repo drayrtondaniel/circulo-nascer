@@ -1512,3 +1512,13 @@ a:focus, button:focus, input:focus {
     .hero-text p { font-size: 1rem; }
     :root { --touch-target-min: 48px; }
 }
+
+
+/* ===== Ajuste: legenda abaixo da tabela comparativa ===== */
+.comparison-section > .container > p:last-child {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 0 var(--space-sm);
+}
