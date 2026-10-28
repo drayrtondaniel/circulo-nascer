@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         const ctaBtn = document.getElementById('rec-cta');
-        ctaBtn.href = `https://cal.com/dr-ayrton?plano=${plano}&origem=quiz`;
+        ctaBtn.href = `https://wa.me/5519992199683?text=Ol%C3%A1%2C%20vim%20pelo%20site%20do%20C%C3%ADrculo%20Nascer%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20planos.`;
     }
 
     /* ---------- NAVEGAÇÃO (planos) ---------- */
