@@ -1,6 +1,7 @@
 /* =========================================================
    CÍRCULO NASCER — script.js
    Lógica: LGPD → Quiz (2 etapas) → Lead capture → Recomendação
+   Integração: Envia dados do formulário para SendPulse (oculto)
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
         trackEvent('lead_capture_displayed');
     });
 
-    // Envio do formulário de lead
+    // Envio do formulário de lead → SendPulse
     document.getElementById('leadForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -143,7 +144,52 @@ document.addEventListener('DOMContentLoaded', function () {
             quiz_profile: `${answers.q1 || 'nao-sei'}_${answers.q2 || 'geral'}`
         });
 
-        // Ponto de integração: enviar para CRM/webhook aqui (futuro)
+        // --- PONTE PARA O SENDPULSE ---
+        // Preenche o formulário oculto do SendPulse e o envia
+        const spForm = document.querySelector('.sp-form[sp-id="255971"] form');
+        if (spForm) {
+            // Preenche email
+            const spEmail = spForm.querySelector('input[type="email"]');
+            if (spEmail) {
+                spEmail.value = formData.email;
+                spEmail.dispatchEvent(new Event('input', { bubbles: true }));
+                spEmail.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+
+            // Preenche telefone
+            const spPhone = spForm.querySelector('input[type="tel"]');
+            if (spPhone && formData.whatsapp) {
+                spPhone.value = formData.whatsapp;
+                spPhone.dispatchEvent(new Event('input', { bubbles: true }));
+                spPhone.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+
+            // Preenche nome (se houver campo)
+            const spName = spForm.querySelector('input[name="sform[name]"]');
+            if (spName && formData.name) {
+                spName.value = formData.name;
+                spName.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+
+            // Marca todos os checkboxes obrigatórios (GDPR, termos, etc.)
+            spForm.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (!cb.checked) {
+                    cb.checked = true;
+                    cb.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+
+            // Dispara o submit do formulário oculto
+            try {
+                spForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                console.log('[SendPulse] Formulário preenchido e enviado com sucesso.');
+            } catch (err) {
+                console.warn('[SendPulse] Erro ao enviar:', err);
+            }
+        } else {
+            console.warn('[SendPulse] Formulário oculto não encontrado no DOM.');
+        }
+        // --- FIM DA PONTE ---
 
         document.getElementById('leadCapture').classList.remove('active');
         showRecommendation();
@@ -175,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const expectativa = answers.q2;
 
         if (trimestre === 'nao-sei' || expectativa === 'geral') {
-            return 'acompanhamento'; // padrão equilibrado
+            return 'acompanhamento';
         }
         if (trimestre === 'terceiro' || expectativa === 'planejamento') {
             return 'integral';
